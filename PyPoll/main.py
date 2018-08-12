@@ -25,8 +25,7 @@ with open(csvpath, newline='') as csvfile:
             vote_count[3] += 1
     
     vpercent = [round(x/count*100, 2) for x in vote_count]
-    
-    
+     
     print("Election Results")
     print("--------------------------------------------")
     print("Total Votes: " + str(count))
@@ -37,3 +36,19 @@ with open(csvpath, newline='') as csvfile:
     print(candidates[3] + " " + str( vpercent[3]) + " (" + str(vote_count[3]) + ")")
     print("---------------------------------------------")
     print("Winner = Khan")
+    
+    file = open("C:/Users/jnovic/Desktop/python-challenge/PyPoll/Pypol.txt", "w")
+    file.write("Election Results")
+    file.write("--------------------------------------------")
+    file.write("Total Votes: " + str(count))
+    file.write("--------------------------------------------")
+    file.write(candidates[0] + " " + str( vpercent[0]) + " (" + str(vote_count[0]) + ")")
+    file.write(candidates[1] + " " + str( vpercent[1]) + " (" + str(vote_count[1]) + ")")
+    file.write(candidates[2] + " " + str( vpercent[2]) + " (" + str(vote_count[2]) + ")")
+    file.write(candidates[3] + " " + str( vpercent[3]) + " (" + str(vote_count[3]) + ")")
+    file.write("---------------------------------------------")
+    file.write("Winner = Khan")
+    
+    file.close()
+    
+    
