@@ -15,6 +15,7 @@ with open(csvpath, newline='') as csvfile:
     profit = 0.00  
     calc_change = 0
     calc_average = 0
+    months = []
     #max_month = [csvreader[24]]
     #min_month = [csvreader[44]]
     
@@ -22,11 +23,13 @@ with open(csvpath, newline='') as csvfile:
         count += 1
         profit += float(row [1])
         list_changes.append(int(row[1]) - calc_change) 
+        months.append(row[0])
         calc_change = int(row [1])
         
     for item in list_changes:
         calc_average += item
     
+   
     average = round(calc_average/count, 2) 
     maximum = max(list_changes) 
     minimum = min(list_changes)
@@ -42,8 +45,8 @@ with open(csvpath, newline='') as csvfile:
     print("Total Months: " + str(count))
     print("Total: $" + str(profit))
     print("Average Change: $" + str(average))
-    print("Greatest Increase in Profits: $" + str(maximum))
-    print("Greatest Increase in Profits: $" + str(minimum))
+    print("Greatest Increase in Profits: $" + str(maximum) + " (" + months[25] +")")
+    print("Greatest Increase in Profits: $" + str(minimum) + " (" + months[44] +")")
     
 file = open("C:/Users/jnovic/Desktop/python-challenge/PyBank/PyBank.txt", "w")
 file.write("Financial Analysis")
@@ -51,7 +54,6 @@ file.write("------------------------------------------------")
 file.write("Total Months: " + str(count))
 file.write("Total: $" + str(profit))
 file.write("Average Change: $" + str(average))
-file.write("Greatest Increase in Profits: $" + str(maximum))
-file.write("Greatest Increase in Profits: $" + str(minimum))
-    
+file.write("Greatest Increase in Profits: $" + str(maximum) + " (" + months[25] +")")
+file.write("Greatest Increase in Profits: $" + str(minimum) + " (" + months[44] +")")
 file.close()
