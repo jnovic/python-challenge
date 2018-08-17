@@ -2,7 +2,7 @@
 import os
 import csv
 
-csvpath = os.path.join(r"C:/Users/jnovic/Desktop/CWUBootcamp/PyBank/Resources/budget_data.csv")
+csvpath = os.path.join(r"PyBank/Resources/budget_data.csv")
 
 with open(csvpath, newline='') as csvfile:
 
