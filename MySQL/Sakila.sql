@@ -87,6 +87,50 @@ group by customer.customer_id
 order by customer.last_name;
 
 -- 7a
+Select film.title 
+from film
+where title like "K%" or "Q%" and language_id in
+(select language_id
+from language
+where name = "English");
+
+-- 7b
+Select first_name, last_name 
+from actor
+where actor_id in
+(select actor_id
+from film_actor
+where film_id in
+(select film_id 
+from film
+where title = "Alone Trip"
+));
+
+-- 7c
+select customer.first_name, customer.last_name, address.address, city.city, address.district, country.country, address.postal_code
+from customer
+join address
+on customer.address_id = address.address_id
+join city
+on address.city_id = city.city_id
+join country
+on city.country_id = country.country_id
+where country.country = "Canada";
+
+-- 7d
+select title 
+from film
+where film_id in
+(select film_id 
+from film_category
+where category_id in
+(select category_id
+from category
+where name = "Family"
+));
+
+-- 7e
+
 
 
 
