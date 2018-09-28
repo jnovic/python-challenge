@@ -158,9 +158,41 @@ on address.city_id = city.city_id
 join country
 on city.country_id = country.country_id;
 
+-- 7h
+Select category.name, sum(payment.amount) as "Total Revenue"
+from category
+join 
+film_category
+on category.category_id = film_category.category_id
+join inventory
+on film_category.film_id = inventory.film_id
+join rental
+on inventory.inventory_id = rental.inventory_id
+join payment
+on rental.rental_id = payment.rental_id
+group by category.name
+order by sum(payment.amount) desc
+limit 5;
 
+-- 8a
+Create view Top5Genres
+as
+Select category.name, sum(payment.amount) as "Total Revenue"
+from category
+join 
+film_category
+on category.category_id = film_category.category_id
+join inventory
+on film_category.film_id = inventory.film_id
+join rental
+on inventory.inventory_id = rental.inventory_id
+join payment
+on rental.rental_id = payment.rental_id
+group by category.name
+order by sum(payment.amount) desc
+limit 5;
  
- 
+ -- 
 
 
 
