@@ -192,7 +192,11 @@ group by category.name
 order by sum(payment.amount) desc
 limit 5;
  
- -- 
+ -- 8b
+ Select * from top5genres;
+ 
+ -- 8c
+ Drop view top5genres;
 
 
 
