@@ -60,6 +60,38 @@ join payment
 on staff.staff_id = payment.staff_id
 group by staff.staff_id;
 
+-- 6c
+select film.title, count(film_actor.actor_id) as "Actor Movie Count"
+from film_actor
+inner join film
+on film_actor.film_id = film.film_id
+group by film.film_id
+;
+
+-- 6d
+SELECT Count(inventory_id) as "Total Copies of Hunchback Impossible"
+FROM inventory
+Where film_id IN
+(
+SELECT film_id
+FROM film
+WHERE title = 'Hunchback Impossible'
+    );
+    
+-- 6e
+Select customer.last_name, customer.first_name, sum(payment.amount) as "Total Amount Paid"
+from customer
+join payment
+on customer.customer_id = payment.customer_id
+group by customer.customer_id
+order by customer.last_name;
+
+-- 7a
+
+
+
+
+
 
 
 
