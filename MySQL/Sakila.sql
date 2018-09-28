@@ -130,6 +130,37 @@ where name = "Family"
 ));
 
 -- 7e
+select film.title, count(rental.rental_id)
+from film 
+join rental
+on film.film_id = inventory.film_id
+join rental
+on inventory.inventory_id = rental.inventory_id
+group by film.title
+order by desc;
+
+-- 7f
+Select store.store_id, sum(payment.amount) as "total sales"
+from store
+join staff
+on store.store_id = staff.store_id
+join payment
+on staff.staff_id = payment.staff_id
+group by store.store_id;
+
+-- 7g
+select store.store_id, city.city, country.country
+from store
+join address
+on store.address_id = address.address_id
+join city
+on address.city_id = city.city_id
+join country
+on city.country_id = country.country_id;
+
+
+ 
+ 
 
 
 
