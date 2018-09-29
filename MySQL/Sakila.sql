@@ -130,14 +130,14 @@ where name = "Family"
 ));
 
 -- 7e
-select film.title, count(rental.rental_id)
+select film.title, count(rental.rental_id) as rental_count
 from film 
-join rental
+join inventory
 on film.film_id = inventory.film_id
 join rental
 on inventory.inventory_id = rental.inventory_id
 group by film.title
-order by desc;
+order by rental_count desc;
 
 -- 7f
 Select store.store_id, sum(payment.amount) as "total sales"
