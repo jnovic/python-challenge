@@ -31,8 +31,8 @@ def welcome():
         f"/api/v1.0/precipitation<br/>"
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs<br/>"
-        f"/api/v1.0/<start> in format %Y-%m-%d<br/>"
-        f" /api/v1.0/<start>/<end> in format %Y-%m-%d"
+        f"/api/v1.0/<start> %Y-%m-%d<br/>"
+        f"/api/v1.0/<start>/<end>"
     )
 
 @app.route("/api/v1.0/precipitation")
@@ -68,6 +68,15 @@ def start(start):
     for i in maxminavg:
         summarytemp1.append({"tmax":i[0], "tmin":i[1], "tavg":i[2]})
     return jsonify(summarytemp1)
+
+@app.route("/api/v1.0/<start>/<end>")
+def end(start, end):
+    maxminavg2 = session.query(func.max(Measurement.tobs),func.min(Measurement.tobs),\
+    func.avg(Measurement.tobs)).filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    summarytemp2 = []
+    for j in maxminavg2:
+        summarytemp2.append({"tmax":j[0], "tmin":j[1], "tavg":j[2]})
+    return jsonify(summarytemp2)
 
 
 if __name__ == '__main__':
