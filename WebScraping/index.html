@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Web Scraping Assignment</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h6>Latest Mars News</h6>
+        <h4>{{facts.title}}</h4>
+        <h3>{{facts.description}}</h3>
+      </div>
+    <div class="row">
+        <div class="col-md-9">
+            <h6>Featured Mars Image</h6>
+            <img src={{facts.feature_image}} alt=Image of Mars>
+        </div>
+        <div class="col-md-3">
+        <div class="card" >
+            <h4>Current Weather on Mars</h4>
+            <span>{{facts.weather}}</span>
+        <div>
+            {{facts.facts"}}
+        </div>
+        </div>
+
+        </div>
+    </div>
+
+    </div>
+
+  </div>
+</body>
+
+</html>
+
