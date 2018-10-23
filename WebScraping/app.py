@@ -15,7 +15,7 @@ def index():
 
 
 @app.route("/scrape")
-def scraper():
+def scrape():
     facts_data = scrape_mars.scrape()
     return redirect("/", code=302)
 

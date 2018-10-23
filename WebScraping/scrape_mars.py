@@ -46,12 +46,3 @@ def scrape():
     collection = db.factoids
     collection.insert_one(post)
     
-scrape()
-
-conn = 'mongodb://localhost:27017'
-client = pymongo.MongoClient(conn)
-db = client.mars_db
-listings = db.factoids.find()
-
-for listing in listings:
-    print(listing)
