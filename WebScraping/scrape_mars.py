@@ -33,16 +33,31 @@ def scrape():
     df.columns=["Fact Type", "Fact"]
     dfhtml = df.to_html()
     dfhtml = dfhtml.replace('\n', '')
-    
+    results = soup5.find_all("h3")
+    trythis = ["https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced"]
+    screwthis = []
+    for x in results:
+        url5= "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+        browser.visit(url5)
+        html5 = browser.html
+        soup5 = bs(html5, "lxml")
+        time.sleep(5)
+        browser.click_link_by_partial_text(x.text)
+        html5 = browser.html
+        soup5 = bs(html5, "lxml")
+        maybe = soup5.find("img", class_="wide-image")["src"]
+        alex = urljoin(url5, maybe)
+        screwthis.append({"title": x.text,
+                       "url": alex })
     post = {"title":title, 
             "description":p_text, 
             "feature_image": featured_image_url,
             "weather": mars_weather,
-            "facts": dfhtml
+            "facts": dfhtml,
+            "images": screwthis
             }
     conn = 'mongodb://localhost:27017'
     client = pymongo.MongoClient(conn)
-    db = client.mars_db
+    db = client.db
     collection = db.factoids
     collection.insert_one(post)
-    
