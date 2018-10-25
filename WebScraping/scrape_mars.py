@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup as bs
 import pandas as pd
 import time
 import pymongo
+from urllib.parse import urljoin
 
 def scrape():
     executable_path = {'executable_path': 'chromedriver.exe'}
@@ -33,6 +34,10 @@ def scrape():
     df.columns=["Fact Type", "Fact"]
     dfhtml = df.to_html()
     dfhtml = dfhtml.replace('\n', '')
+    url5= "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+    browser.visit(url5)
+    html5 = browser.html
+    soup5 = bs(html5, "lxml")
     results = soup5.find_all("h3")
     trythis = ["https://astrogeology.usgs.gov/search/map/Mars/Viking/cerberus_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/schiaparelli_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/syrtis_major_enhanced", "https://astrogeology.usgs.gov/search/map/Mars/Viking/valles_marineris_enhanced"]
     screwthis = []
@@ -56,8 +61,9 @@ def scrape():
             "facts": dfhtml,
             "images": screwthis
             }
-    conn = 'mongodb://localhost:27017'
-    client = pymongo.MongoClient(conn)
-    db = client.db
-    collection = db.factoids
-    collection.insert_one(post)
+    return post
+   # conn = 'mongodb://localhost:27017'
+    #client = pymongo.MongoClient(conn)
+    #db = client.db
+    #collection = db.factoids
+    #collection.insert_one(post)
