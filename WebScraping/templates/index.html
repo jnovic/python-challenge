@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-9">
             <h6>Featured Mars Image</h6>
-            <img src={{facts.feature_image}} alt=Image of Mars>
+            <img src={{facts.feature_image}} alt=image of Mars>
         </div>
         <div class="col-md-3">
         <div class="card" >
@@ -34,12 +34,28 @@
             <span>{{facts.weather}}</span>
             <br>
         <div>
-            {{facts.facts}}
+            {{facts.facts | safe}}
         </div>
         </div>
     
 
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <img src={{facts.images[0][url]}} alt=another image of mars>
+      </div>
+      <div class="col-md-6">
+        <img src- {{facts.images[1][url]}} alt=a third image of mars>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <img src={{facts.images[2][url]}} alt=a fourth image of mars>
+        </div>
+        <div class="col-md-6">
+          <img src- {{facts.images[3][url]}} alt=a final image of mars>
+        </div>
+      </div>
     </div>
    
 
